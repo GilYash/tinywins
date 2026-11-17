@@ -1,4 +1,4 @@
-# TinyWins v3 — hosted, updateable checklist
+# TinyWins v5 — hosted, updateable checklist
 
 TinyWins is a static web app (no account, API key, server, or database needed).
 Each visitor's tasks and preferences stay in **their own browser** via localStorage.
@@ -34,6 +34,27 @@ When a newer service worker is detected, the app shows an **Update now** banner;
 users can also refresh/reopen the website. Web deployment is required for this:
 opening `index.html` locally will NOT enable automatic app updates.
 
+## What's New: release notes and update announcements
+
+Starting in TinyWins v5, returning users see a **What's New** dialog once after
+each published app version changes. This preference uses the separate localStorage
+key `tinywins-last-seen-release`, and does not change task data. New users see
+the tutorial first instead of an update popup.
+
+Everyone can reopen the changelog from **Settings → What's New · Release history**.
+The current release and past releases are available in both English and Hebrew,
+including in dark mode and on iPhone.
+
+**For every new app release:**
+1. Add the latest localized release notes to the top of `release-notes.js`.
+2. Increase `TinyWinsReleaseNotes.current` to the new version.
+3. Update the version shown in Settings and the backup export version in `index.html`.
+4. Increment `CACHE_VERSION` in `sw.js` so installed copies fetch the new code.
+5. Commit the files to `main`; check the GitHub Pages deployment result.
+
+The dialog appears on the next open/refresh after an app update has been loaded.
+Automatic code updates and notifications are not the same as cross-device task sync.
+
 **Each future release should increment `CACHE_VERSION` in `sw.js`** so existing
 offline assets are replaced. Keep the app's origin and localStorage key unchanged
 (`tinywins-checklist-v1`) so existing users retain their saved browser tasks.
@@ -68,6 +89,8 @@ becomes the **Due date** (with no specified start date).
 - Dark mode, list/task icons, color-coded lists
 - Focus card, tiny steps, two-minute start timer, check-off celebration
 - First-use and reopenable guided tutorial
+- What's New popup after updates, and bilingual release history in Settings
+- Seven accent themes, gradients, user photo background, Eisenhower Matrix
 - Offline cache/installable web app after first online visit on supported browsers
 
 ## Files
@@ -75,6 +98,8 @@ becomes the **Due date** (with no specified start date).
 - `index.html`: complete browser app
 - `sw.js`: offline caching and update checks
 - `manifest.webmanifest`: installable app metadata
+- `v4.js` and `v4.css`: personalized themes, backgrounds, task matrix
+- `release-notes.js` and `release-notes.css`: versioned What's New announcements
 - `icons/`: app icons
 
 ## Privacy, limits, and updating
