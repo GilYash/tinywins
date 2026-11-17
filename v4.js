@@ -118,7 +118,7 @@
     const beforeImage=data.wallpaperImage,beforeWall=data.wallpaper;
     data.wallpaperImage=photo;data.wallpaper="photo";
     save();
-    if(localStorage.getItem("tinywins-checklist-v1")===null||localStorage.getItem("tinywins-checklist-v1")?.indexOf('"wallpaperImage"')===-1){
+    if(!localStorage.getItem("tinywins-checklist-v1")||JSON.parse(localStorage.getItem("tinywins-checklist-v1")).wallpaperImage!==photo){
      data.wallpaperImage=beforeImage;data.wallpaper=beforeWall;save();throw Error("storage");
     }
     applyTheme();paintSelection("data-background",data.wallpaper);
