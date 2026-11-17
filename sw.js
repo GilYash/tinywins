@@ -1,6 +1,6 @@
 /* TinyWins service worker — increment CACHE_VERSION each release. */
-const CACHE_VERSION = 'tinywins-v3-ios-20261117';
-const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png'];
+const CACHE_VERSION = 'tinywins-v4-appearance-matrix-20261117';
+const SHELL = ['./', './index.html', './manifest.webmanifest', './icons/icon-192.png', './icons/icon-512.png', './icons/apple-touch-icon.png', './v4.css', './v4.js'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE_VERSION).then(cache => cache.addAll(SHELL)));
 });
